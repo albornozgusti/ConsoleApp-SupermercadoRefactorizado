@@ -71,12 +71,12 @@ namespace MenuPrincipal
             get { return this.recaudado; }
         }
 
-        override public string ToString()//OVERRIDE 
+        override public string ToString()
         {
             if (abierto == false)
-                return "Caja" + " " +/*numerodecaja*/"" + " " + "CERRADA";
+                return "Caja " +/*numerodecaja*/"" + " CERRADA";
             else
-                return "Caja" + " " +/*numerodecaja*/"" + " " + "atendida por " + cajero.Nombre + " " + cajero.Apellido
+                return "Caja" + " " +/*numerodecaja*/"" + " " + "atendida por " + cajero.Nombre + " " + cajero.Apellido;
         }
     }
 }

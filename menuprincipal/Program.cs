@@ -188,7 +188,7 @@ namespace MenuPrincipal
                         Console.ReadKey(true);
                         break;
 					case 2:
-                        Supermercado.asignacion_cajas();
+                        Supermercado.abrirCajas();
                         Console.WriteLine("presione una tecla para continuar");
                         Console.WriteLine("");
                         Console.ReadKey(true);
@@ -312,7 +312,7 @@ namespace MenuPrincipal
                     Console.WriteLine("**********************************************");
                     Console.WriteLine();
                     Console.WriteLine("Cajas abiertas: ");
-                    Supermercado.cajasAbiertas();
+                    Supermercado.listaCajasAbiertas();
                     Console.WriteLine();
                     Console.WriteLine("**********************************************");
                     Console.WriteLine("Que caja elije para pagar?");
@@ -364,7 +364,7 @@ namespace MenuPrincipal
                     Supermercado.nuevoCliente(dni);//ejecutamos la funcion para obtener  los datos del nuevo cliente
                 }
                 Console.WriteLine("total a pagar: " + Supermercado.pagarConDescuento());//mostramos el total a pagar por el cliente con los descuentos de las promociones si hubiese (dentro de la funcion se detalla todo)
-                Console.WriteLine("con su compra ahorro: " + (Supermercado.getTotalCarro() - Supermercado.pagarConDescuento()));//se muestra lo que ahorra el cliente gracias a las promociones
+                Console.WriteLine("con su compra ahorro: " + (Supermercado.getGastoTotalCarro() - Supermercado.pagarConDescuento()));//se muestra lo que ahorra el cliente gracias a las promociones
                 Supermercado.caja[caja - 1].Recaudado += Supermercado.pagarConDescuento();//aca se va acumulando lo recaudado por la caja
                 Supermercado.acumularDineroCajero(caja);//aca se va acmulando lo recaudado por el cajero que esta atendiendo
                 Supermercado.acumularDineroPersonas(dni);//aqui se acumula el dinero que gastaron los clientes

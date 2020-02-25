@@ -17,8 +17,8 @@ namespace MenuPrincipal
 
         public static Caja[] caja = new Caja[5] { new Caja(1), new Caja(2), new Caja(3), new Caja(4), new Caja(5) };
         public static int opcion;//variable a usar globalmente
-        static int lleva;//
-        static int paga;//
+        static int lleva;
+        static int paga;
         public static int cantidad;//variable usada para la cantidad de productos del carro
         static float total_ganado;
 
@@ -27,7 +27,7 @@ namespace MenuPrincipal
             return carro.Count;
         }
 
-        public static void limpiarCarro()//funcion para limpiar carro ya que en esta clase esta como privada
+        public static void limpiarCarro()
         {
         	carro.Clear();
         }
@@ -37,22 +37,25 @@ namespace MenuPrincipal
         	return listaproducto.Count;
         }
         
-        public static void nuevoProducto()//DAR DE ALTA A PRODUCTOS
+        public static void nuevoProducto()
         {
             try
             {
                 Console.WriteLine("Ingrese el tipo de producto");
                 string tipo = Console.ReadLine();
+
                 Console.WriteLine("Ingrese la marca");
                 string marca = Console.ReadLine();
+
                 Console.WriteLine("Ingrese el envase");
                 string envase = Console.ReadLine();
+
                 Console.WriteLine("Ingrese el precio");
                 float precio = float.Parse(Console.ReadLine());
+
                 if (tipo=="" | marca=="" | envase=="")
-                {
                     throw new DatoInvalidoException("Hay un error en los datos ingresados, el producto no fue dado de alta");
-                }
+                
                 listaproducto.Add(new Producto(tipo, marca, envase, precio));
                 Console.WriteLine("El producto fue dado de alta correctamente.");
 
@@ -71,7 +74,7 @@ namespace MenuPrincipal
             }
         }
         
-        public static void mostrarProductos()//funcion para ver los productos
+        public static void mostrarProductos()
         {
             Console.WriteLine("Listado de productos:");
             Console.WriteLine("");
@@ -82,7 +85,7 @@ namespace MenuPrincipal
             
         }
 
-        public static void nuevaPromocion()//funcion que añade una nueva promocion
+        public static void nuevaPromocion()
         {
             mostrarProductos();
             try
@@ -94,13 +97,16 @@ namespace MenuPrincipal
                 opcion = int.Parse(Console.ReadLine());
                 if (opcion > listaproducto.Count | opcion <= 0)
                     throw new ProductoInexistenteException();
+
                 Console.Write("Llevando: ");
                 lleva = int.Parse(Console.ReadLine());
+
                 Console.Write("Paga: ");
                 paga = int.Parse(Console.ReadLine());
+
                 if (lleva < paga)
                     throw new DatoInvalidoException("error, no se debe poner que lleve menos y pague mas");
-                promociones.Add(new Promociones(getProducto(opcion), lleva, paga));
+                promociones.Add(new Promociones(getProductoSupermercado(opcion), lleva, paga));
                 Console.WriteLine("La promocion fue dada de alta correctamente");
             }
             catch (FormatException)
@@ -136,7 +142,7 @@ namespace MenuPrincipal
             }
         }
 
-        public static void mostrarPromociones()//funcion para mostrar la lista de promociones
+        public static void mostrarPromociones()
         {
             Console.WriteLine("Listado de promociones:");
             Console.WriteLine("");
@@ -146,7 +152,7 @@ namespace MenuPrincipal
             }
         }
 
-        public static void mostrarCarro()//funcion que muestra los productos agregados al carro
+        public static void mostrarCarro()
         {
             foreach (Carro c in carro)
             {
@@ -154,28 +160,28 @@ namespace MenuPrincipal
             }
         }
 
-        public static void agregarProductoAlCarro()//funcion para agregar productos al carro
+        public static void agregarProductoAlCarro()
         {
             foreach (Carro c in carro)
             {
-                if (c.getProducto().Id == getProducto(opcion).Id)
+                if (c.getProductoCarro().Id == getProductoSupermercado(opcion).Id)
                 {
                     c.agregarMasCantidad(cantidad);
                     return;
                 }
             }
-            carro.Add(new Carro(getProducto(opcion),cantidad));
+            carro.Add(new Carro(getProductoSupermercado(opcion),cantidad));
         }
 
-        public static Producto getProducto(int opcion)//funcion que devuelve "Producto" desde el arraylist de listaproducto
+        public static Producto getProductoSupermercado(int opcion)
         {
             if (opcion <= listaproducto.Count)
                 return (Producto)listaproducto[opcion - 1];
             else
-                throw new DatoInvalidoException("definido, dato fuera de rango");
+                throw new DatoInvalidoException("indefinido, dato fuera de rango");
         }
 
-        public static float getTotalCarro()//devuelve el gasto total del carro, sirve para realizar la resta general con los descuentos
+        public static float getGastoTotalCarro()//devuelve el gasto total del carro, sirve para realizar la resta general con los descuentos
         {
             float total=0;//variable acumuladora
             foreach (Carro c in carro)
@@ -185,23 +191,27 @@ namespace MenuPrincipal
             return total;//retorno el total
         }
 
-        public static Cajero getCajero(int opcion)// usada para que retorne el tipo cajero del arraylist cajeros
+        public static Cajero getCajero(int opcion)
         {
             return (Cajero)cajeros[opcion - 1];
         }
 
-        public static void nuevocajero()//DAR DE ALTA CAJEROS
+        public static void nuevocajero()
         {
             try
             {
                 Console.WriteLine("Ingrese el nombre: ");
                 string nombre = Console.ReadLine();
+
                 Console.WriteLine("Ingrese el apellido: ");
                 string apellido = Console.ReadLine();
+
                 Console.WriteLine("Ingrese el DNI: ");
                 int dni = int.Parse(Console.ReadLine());
+
                 Console.WriteLine("Ingrese horario: ");
                 string horario = Console.ReadLine();
+
                 if (nombre == "" | apellido == "" | dni <=0 | horario == "")
                     throw new DatoInvalidoException("hay un error en los datos ingresados, no se dio de alta al cajero");
 
@@ -218,18 +228,18 @@ namespace MenuPrincipal
             }   
         }
 
-        public static void asignacion_cajas()//ASIGNAR CAJEROS A CAJAS
+        public static void abrirCajas()
         {
-            int num_opc;
+            int numCaja;
             try
             {
                 if (cajeros.Count == 0)
                     throw new NoHayCajerosException("no se puede abrir cajas ya que no hay ningun cajero disponible");
                 int cont = 0;
                 Console.WriteLine("¿Que caja desea abrir? [1-5] ");
-                num_opc = int.Parse(Console.ReadLine());
-                if (caja[num_opc - 1].Abierto == true)//si la caja esta abierta
-                    throw new CajaAbiertaException(num_opc);//excepcion que lanza un mensaje de la caja abierta (VER LINEA 246)
+                numCaja = int.Parse(Console.ReadLine());
+                if (caja[numCaja - 1].Abierto == true)//si la caja esta abierta
+                    throw new CajaAbiertaException(numCaja);//excepcion que lanza un mensaje de la caja abierta (VER LINEA 246)
                 Console.WriteLine("Ingrese el cajero que va a atender la caja ");
                 foreach (Cajero c in cajeros)
                 {
@@ -249,8 +259,8 @@ namespace MenuPrincipal
                         getCajero(id_cajero).Activo = true;//se le cambia el estado Activo a True indicando que esta trabajando
                     }
                 }
-                caja[num_opc - 1].abrirCajero(id_cajero);//se abre la caja con el cajero seleccionado   
-                Console.WriteLine("La caja " + num_opc + " fue abierta");
+                caja[numCaja - 1].abrirCajero(id_cajero);//se abre la caja con el cajero seleccionado   
+                Console.WriteLine("La caja " + numCaja + " fue abierta");
                 
             }
             catch (FormatException)
@@ -283,7 +293,7 @@ namespace MenuPrincipal
             }
         }
 
-        public static void cerra_cajas()//funcion que cierra una caja elejida por el usuario 
+        public static void cerra_cajas()
         {
             Console.WriteLine("¿Que caja desea cerrar? [1-5] ");
             try
@@ -312,14 +322,13 @@ namespace MenuPrincipal
             Console.ReadKey(true);
         }
 
-        public static void listado_cajas()//funcion que imprime el listado de cajas e indica cual esta abierta o cerrada
+        public static void listado_cajas()
         {   
-            //int cont = 0;
             Console.WriteLine("Listado cajas ");
 
             foreach (Caja i in caja)
             {
-                i.estadoCaja();// invoco al metodo tostring para imprimir el estado
+                i.estadoCaja();
             }
             Console.ReadKey(true);
         }
@@ -333,7 +342,7 @@ namespace MenuPrincipal
             return false;
         }
 
-        public static void cajasAbiertas()//usado en el modulo CLIENTE PARA LISTAR CAJAS ABIERTAS UNICAMENTE
+        public static void listaCajasAbiertas()//usado en el modulo CLIENTE PARA LISTAR CAJAS ABIERTAS UNICAMENTE
         {
             foreach (Caja i in caja)
             {
@@ -449,13 +458,13 @@ namespace MenuPrincipal
             {                
                 foreach (Promociones p in promociones)
                 {//recorro las promociones
-                    if (c.getProducto().Id == p.getProducto().Id)//analizo si el producto del carro tiene alguna promocion
+                    if (c.getProductoCarro().Id == p.getProducto().Id)//analizo si el producto del carro tiene alguna promocion
                     {
                         cantidadapagar = c.Cantidad / p.Lleva;//calculo cuantas veces deberia multiplicar el p.paga, ej: llevo (c.cantidad)=7 unidades y tiene un (p.lleva)=3x(p.paga)=2, el resultado es 2
                         cantidadapagar = cantidadapagar * p.Paga;//teniendo en cuenta el comentario anterior, aqui multiplico el resultado por la cantidad de veces que se aplica el p.paga
-                        pagarcondescuento += sumarProductosCantidad(cantidadapagar, c.getProducto().Precio);//habiendo acumulado el total de unidades a pagar con el descuento, aplico el precio del producto para acumular al total a pagar realmente
+                        pagarcondescuento += sumarProductosCantidad(cantidadapagar, c.getProductoCarro().Precio);//habiendo acumulado el total de unidades a pagar con el descuento, aplico el precio del producto para acumular al total a pagar realmente
                         cantidadsobrante = c.Cantidad % p.Lleva;//porque faltan las unidades que sobraron, teniendo en cuenta el mismo ejemplo, sobra 1 unidad, aqui aplico las unidades restantes
-                        pagarcondescuento += sumarProductosCantidad(cantidadsobrante, c.getProducto().Precio);//multiplico la unidad restante y se la agrego al pago total, asi... obteniendo el precio final con el descuento
+                        pagarcondescuento += sumarProductosCantidad(cantidadsobrante, c.getProductoCarro().Precio);//multiplico la unidad restante y se la agrego al pago total, asi... obteniendo el precio final con el descuento
                     }  
                 }
                 if (pagarcondescuento > 0)//si hubo algun descuento

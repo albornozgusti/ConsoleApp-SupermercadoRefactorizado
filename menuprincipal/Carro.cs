@@ -21,7 +21,7 @@ namespace MenuPrincipal
             get { return this.cantidad; }
         }
 
-        public Producto getProducto()
+        public Producto getProductoCarro()
         {
             return this.producto;
         }

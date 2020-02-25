@@ -15,7 +15,7 @@ namespace MenuPrincipal
         {
             this.producto=p;
             this.lleva = lleva;
-            this.paga = paga            
+            this.paga = paga;       
         }
 
         public Producto getProducto()
