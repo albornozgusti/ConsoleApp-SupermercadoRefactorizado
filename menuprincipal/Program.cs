@@ -30,13 +30,6 @@ namespace MenuPrincipal
                 {
                     opc = int.Parse(Console.ReadLine());//unicamente a esta linea ya que el usuario puede ingresar una letra como opcion y no es valido
                 }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Por favor, ingrese el numero correcto entre las opciones 1-5");
-                    Console.ReadKey(true);
-                    continue;
-
-                }//fin catch
                 catch
                 {
                     Console.WriteLine("Por favor, ingrese el numero correcto entre las opciones 1-5");
@@ -46,10 +39,10 @@ namespace MenuPrincipal
                 switch (opc)
                     {
                         case 1:
-                            productos();
+                            moduloProductos();
                             break;
                         case 2:
-                            cajas();
+                            moduloCajas();
                             break;
                         case 3:
                             Supermercado.limpiarCarro();//limpiamos el carro en caso de que ya haya comprado alguien
@@ -58,7 +51,7 @@ namespace MenuPrincipal
                             if (Supermercado.getCantidadProductos() >= 1)//si la cantidad de productos en la lista del supermercado no esta vacia y...
                             {
                                 if (Supermercado.hayCajaAbierta() == true) //hay una caja abierta como minimo
-                                    cliente();//se ejecuta el modulo cliente
+                                    moduloCliente();//se ejecuta el modulo cliente
                                 else
                                     throw new CajaCerradaException();
                             }
@@ -81,7 +74,7 @@ namespace MenuPrincipal
                         }
                         break;
                         case 4:
-                            administracion();
+                            moduloAdministracion();
                             break;
                         case 5:
                             Console.WriteLine("saliendo...");
@@ -95,7 +88,7 @@ namespace MenuPrincipal
                 while (opc != 5);
         }//FIN MAIN
             
-        public static void productos()
+        public static void moduloProductos()
         {
             int opc=0;
             do{//menu de productos
@@ -133,7 +126,7 @@ namespace MenuPrincipal
                         Console.ReadKey(true);
                         break;
                 case 3:
-                        Supermercado.mostrarProductos();
+                        Supermercado.mostrarTodosLosProductos();
                         Console.ReadKey(true);
                         break;
                 case 4:
@@ -150,7 +143,7 @@ namespace MenuPrincipal
               }while(opc!=5);
         }//fin productos()
 
-        public static void cajas()
+        public static void moduloCajas()
         {
             int opc=0;
             do{
@@ -194,7 +187,7 @@ namespace MenuPrincipal
                         Console.ReadKey(true);
                         break;
 					case 3:
-                        Supermercado.cerra_cajas();
+                        Supermercado.cerrarCajaConcreta();
 						Console.WriteLine("");
 						break;
 					case 4:
@@ -211,7 +204,7 @@ namespace MenuPrincipal
             }while(opc!=5);
         }
 
-        public static void cliente()
+        public static void moduloCliente()
         {
             bool error = false;
             int caja;//variable para usar cuando se deba elejir una caja en la cual pagar
@@ -227,7 +220,7 @@ namespace MenuPrincipal
                     Console.WriteLine("*******************************************************************************");
                     Console.WriteLine("Productos disponibles");
                     Console.WriteLine();
-                    Supermercado.mostrarProductos();
+                    Supermercado.mostrarTodosLosProductos();
                     Console.WriteLine();
                     Console.WriteLine("**********************************************");
                     Console.WriteLine("Productos en el carro");
@@ -386,7 +379,7 @@ namespace MenuPrincipal
             
         }
 
-        public static void administracion()
+        public static void moduloAdministracion()
         {
             int opc=0;
             do{

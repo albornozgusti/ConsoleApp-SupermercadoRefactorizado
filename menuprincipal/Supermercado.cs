@@ -74,7 +74,7 @@ namespace MenuPrincipal
             }
         }
         
-        public static void mostrarProductos()
+        public static void mostrarTodosLosProductos()
         {
             Console.WriteLine("Listado de productos:");
             Console.WriteLine("");
@@ -87,7 +87,7 @@ namespace MenuPrincipal
 
         public static void nuevaPromocion()
         {
-            mostrarProductos();
+            mostrarTodosLosProductos();
             try
             {
                 if (listaproducto.Count == 0)
@@ -106,7 +106,7 @@ namespace MenuPrincipal
 
                 if (lleva < paga)
                     throw new DatoInvalidoException("error, no se debe poner que lleve menos y pague mas");
-                promociones.Add(new Promociones(getProductoSupermercado(opcion), lleva, paga));
+                promociones.Add(new Promociones(getProductoConcretoSupermercado(opcion), lleva, paga));
                 Console.WriteLine("La promocion fue dada de alta correctamente");
             }
             catch (FormatException)
@@ -164,16 +164,16 @@ namespace MenuPrincipal
         {
             foreach (Carro c in carro)
             {
-                if (c.getProductoCarro().Id == getProductoSupermercado(opcion).Id)
+                if (c.getProductoCarro().Id == getProductoConcretoSupermercado(opcion).Id)
                 {
                     c.agregarMasCantidad(cantidad);
                     return;
                 }
             }
-            carro.Add(new Carro(getProductoSupermercado(opcion),cantidad));
+            carro.Add(new Carro(getProductoConcretoSupermercado(opcion),cantidad));
         }
 
-        public static Producto getProductoSupermercado(int opcion)
+        public static Producto getProductoConcretoSupermercado(int opcion)
         {
             if (opcion <= listaproducto.Count)
                 return (Producto)listaproducto[opcion - 1];
@@ -293,14 +293,14 @@ namespace MenuPrincipal
             }
         }
 
-        public static void cerra_cajas()
+        public static void cerrarCajaConcreta()
         {
             Console.WriteLine("¿Que caja desea cerrar? [1-5] ");
             try
             {
                 opcion = int.Parse(Console.ReadLine());//toma el valor que seria la caja a cerrar
                 if (opcion>5|opcion<0)//si es un dato fuera de las 5 cajas existentes
-                    throw new DatoInvalidoException("el numero de caja no existe");//tira una excepcion
+                    throw new DatoInvalidoException("el numero de caja no existe");
                 if (caja[opcion - 1].Abierto == false)//en caso de que la caja ya este cerrada
                 {
                     throw new CajaCerradaException();//lanza una excepcion
