@@ -29,7 +29,7 @@ namespace MenuPrincipal
                 try
                 {
                     opc = int.Parse(Console.ReadLine());//unicamente a esta linea ya que el usuario puede ingresar una letra como opcion y no es valido
-                }//fin try
+                }
                 catch (FormatException)
                 {
                     Console.WriteLine("Por favor, ingrese el numero correcto entre las opciones 1-5");
@@ -114,13 +114,12 @@ namespace MenuPrincipal
                 try
                 {
                     opc = int.Parse(Console.ReadLine());//unicamente a esta linea ya que el usuario puede ingresar una letra como opcion y no es valido
-                }//fin try
+                }
                 catch (FormatException)
                 {
                     Console.WriteLine("Por favor, ingrese el numero correcto entre las opciones 1-5");
                     Console.ReadKey(true);
                     continue;
-
                 }//fin catch
 
                 switch (opc)

@@ -16,47 +16,23 @@ namespace MenuPrincipal
 
         public string Nombre
         {
-            set
-            {
-                this.nombre = value;
-            }
-            get
-            {
-                return this.nombre;
-            }
+            set { this.nombre = value; }
+            get { return this.nombre; }
         }
         public string Apellido
         {
-            set
-            {
-                this.apellido = value;
-            }
-            get
-            {
-                return this.apellido;
-            }
+            set { this.apellido = value; }
+            get { return this.apellido; }
         }
         public int Dni
         {
-            set
-            {
-                this.dni = value;
-            }
-            get
-            {
-                return this.dni;
-            }
+            set { this.dni = value; }
+            get { return this.dni; }
         }
         public float Recaudado
         {
-            set
-            {
-                this.recaudado = value;
-            }
-            get
-            {
-                return this.recaudado;
-            }
+            set { this.recaudado = value; }
+            get { return this.recaudado; }
         }
     }
 }

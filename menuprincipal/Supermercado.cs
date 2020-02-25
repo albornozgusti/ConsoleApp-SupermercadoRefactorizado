@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections;
+using MenuPrincipal.Excepciones;
 
 namespace MenuPrincipal
 {
@@ -13,6 +14,7 @@ namespace MenuPrincipal
         static ArrayList cliente = new ArrayList();
         static ArrayList promociones = new ArrayList();
         static ArrayList carro = new ArrayList();
+
         public static Caja[] caja = new Caja[5] { new Caja(1), new Caja(2), new Caja(3), new Caja(4), new Caja(5) };
         public static int opcion;//variable a usar globalmente
         static int lleva;//
@@ -82,7 +84,6 @@ namespace MenuPrincipal
 
         public static void nuevaPromocion()//funcion que añade una nueva promocion
         {
-
             mostrarProductos();
             try
             {
@@ -143,8 +144,6 @@ namespace MenuPrincipal
             {
                 Console.WriteLine(p);
             }
-            
-
         }
 
         public static void mostrarCarro()//funcion que muestra los productos agregados al carro
@@ -188,7 +187,6 @@ namespace MenuPrincipal
 
         public static Cajero getCajero(int opcion)// usada para que retorne el tipo cajero del arraylist cajeros
         {
-            
             return (Cajero)cajeros[opcion - 1];
         }
 
@@ -217,8 +215,7 @@ namespace MenuPrincipal
             catch(DatoInvalidoException e)
             {
                 Console.WriteLine(e.mensaje);
-            }
-            
+            }   
         }
 
         public static void asignacion_cajas()//ASIGNAR CAJEROS A CAJAS
@@ -252,8 +249,7 @@ namespace MenuPrincipal
                         getCajero(id_cajero).Activo = true;//se le cambia el estado Activo a True indicando que esta trabajando
                     }
                 }
-                caja[num_opc - 1].abrirCajero(id_cajero);//se abre la caja con el cajero seleccionado
-                
+                caja[num_opc - 1].abrirCajero(id_cajero);//se abre la caja con el cajero seleccionado   
                 Console.WriteLine("La caja " + num_opc + " fue abierta");
                 
             }
@@ -313,7 +309,6 @@ namespace MenuPrincipal
             {
                 Console.WriteLine("la caja "+ opcion +"ya se encuentra cerrada");
             }
-
             Console.ReadKey(true);
         }
 
@@ -325,8 +320,6 @@ namespace MenuPrincipal
             foreach (Caja i in caja)
             {
                 i.estadoCaja();// invoco al metodo tostring para imprimir el estado
-                //cont++;
-                //Console.WriteLine(cont+") "+i);
             }
             Console.ReadKey(true);
         }
@@ -336,7 +329,6 @@ namespace MenuPrincipal
             {
                 if (c.Abierto == true)
                     return true;
-                
             }
             return false;
         }
@@ -383,10 +375,6 @@ namespace MenuPrincipal
                 {
                     Console.WriteLine(a.ToString());
                     return true;   
-                }
-                else
-                {
-                    //Console.WriteLine("no existe el cliente");
                 }
             }
             return false;
@@ -458,8 +446,7 @@ namespace MenuPrincipal
             float total=0;
             float pagarcondescuento=0;//inicializo en 0 para poder acumularlo directamente
             foreach(Carro c in carro)//recorro el carro de productos
-            {
-                
+            {                
                 foreach (Promociones p in promociones)
                 {//recorro las promociones
                     if (c.getProducto().Id == p.getProducto().Id)//analizo si el producto del carro tiene alguna promocion

@@ -10,20 +10,15 @@ namespace MenuPrincipal
         int cantidad;
         Producto producto;
 
-
         public Carro(Producto p, int c)//constructor
         {
             producto = p;//que producto agrega al carro y..
             cantidad = c;//que cantidad agrega al carro
-
         }
 
         public int Cantidad
         {
-            get
-            {
-                return this.cantidad;
-            }
+            get { return this.cantidad; }
         }
 
         public Producto getProducto()

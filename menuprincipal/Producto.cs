@@ -25,62 +25,36 @@ namespace MenuPrincipal
             id = id+1;
             idpropio = id;
         }
-
-        /*public Producto(ArrayList a)
-        {
-            
-        }*/
         
         //INICIO SET/GET DE VARIABLES PRIVADAS, EN ESTE CASO SE USA EL GET PORQUE VAMOS A QUERER ACCEDER A QUE VALOR TIENE Y NO A MODIFICARLAS, CON EL CONSTRUCTOR YA SE DEFINEN Y SE QUEDAN ALLI
-        public string Tipo{
-            
-            get
-            {
-                return this.tipo;
-            }
+        public string Tipo
+        {    
+            get { return this.tipo; }
         }
 
         public string Marca
-        {
-            
-            get
-            {
-                return this.marca;
-            }
+        {   
+            get { return this.marca; }
         }
+
         public string Envase
-        {
-            
-            get
-            {
-                return this.envase;
-            }
+        {   
+            get { return this.envase; }
         }
+
         public float Precio
-        {
-            
-            get
-            {
-                return this.precio;
-            }
+        {   
+            get { return this.precio; }
         }
+
         public int Id
         {
-            get
-            {
-                return this.idpropio;
-            }
+            get { return this.idpropio; }
         }
-        //FIN SET/GET DE VARIABLES PROVADAS
-
-        //FUNCIONES
-
-
-
+        
         override public string ToString()//OVERRIDE PARA IMPRIMIR EL ID, TIPO MARCA ENVASE Y PRECIO DEL PRODUCTO, ESTO SE VA A USAR EN LA SIMULACION DE LA COMPRA
         {
             return idpropio+")"+tipo+" "+marca+" ("+envase+") ";
         }
-
     }
 }

@@ -29,14 +29,9 @@ namespace MenuPrincipal
         public void estadoCaja()
         {
             if (abierto == false)
-            {
                 Console.WriteLine("Caja " + numero + " CERRADA");
-            }
             else
-            {
                 Console.WriteLine("Caja " + numero + " atendida por " + cajero.Nombre + " " + cajero.Apellido);
-            }
-
         }
 
         public void cerrarCaja()
@@ -67,35 +62,21 @@ namespace MenuPrincipal
 
         public bool Abierto
         {
-            get
-            {
-                return this.abierto;
-            }
+            get { return this.abierto; }
         }
 
         public float Recaudado
         {
-            set
-            {
-                this.recaudado = value;
-            }
-            get
-            {
-                return this.recaudado;
-            }
+            set { this.recaudado = value; }
+            get { return this.recaudado; }
         }
 
         override public string ToString()//OVERRIDE 
         {
             if (abierto == false)
-            {
                 return "Caja" + " " +/*numerodecaja*/"" + " " + "CERRADA";
-            }
             else
-            {
-                return "Caja" + " " +/*numerodecaja*/"" + " " + "atendida por " + cajero.Nombre + " " + cajero.Apellido;
-            }
-
+                return "Caja" + " " +/*numerodecaja*/"" + " " + "atendida por " + cajero.Nombre + " " + cajero.Apellido
         }
     }
 }

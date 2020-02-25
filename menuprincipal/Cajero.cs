@@ -8,7 +8,6 @@ namespace MenuPrincipal
     class Cajero:Persona
     {
         string horario;
-        
         bool activo;
 
         public Cajero(string nombre, string apellido, int dni, string horario)
@@ -19,24 +18,13 @@ namespace MenuPrincipal
             this.horario = horario;
             this.activo = false;
             recaudado = 0;
-
         }
 
         public bool Activo
         {
-            set
-            {
-                this.activo = value;
-            }
-            get
-            {
-                return this.activo;
-            }
+            set { this.activo = value; }
+            get { return this.activo; }
         }
-
-        
-
-       
 
         override public string ToString()//OVERRIDE PARA IMPRIMIR EL NOMBRE Y APELLIDO
         {

@@ -11,14 +11,11 @@ namespace MenuPrincipal
         int lleva;
         int paga;
 
-       
-
         public Promociones(Producto p, int lleva, int paga)
         {
             this.producto=p;
             this.lleva = lleva;
-            this.paga = paga;
-            
+            this.paga = paga            
         }
 
         public Producto getProducto()
@@ -28,21 +25,13 @@ namespace MenuPrincipal
 
         public int Lleva
         {
-            get
-            {
-                return this.lleva;
-            }
+            get { return this.lleva; }
         }
 
         public int Paga
         {
-            get
-            {
-                return this.paga;
-            }
+            get { return this.paga; }
         }
-        
-
 
         override public string ToString()//OVERRIDE PARA IMPRIMIR EL ID, TIPO MARCA ENVASE Y PRECIO DEL PRODUCTO
         {
