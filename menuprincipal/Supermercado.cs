@@ -322,7 +322,7 @@ namespace MenuPrincipal
             Console.ReadKey(true);
         }
 
-        public static void listado_cajas()
+        public static void estadoCajas()
         {   
             Console.WriteLine("Listado cajas ");
 
@@ -350,7 +350,7 @@ namespace MenuPrincipal
                     i.estadoCaja();
             }
         }
-        public static void nuevoCliente(int dni)//REGISTRA UN NUEVO CLIENTE EN EL ARRAYLIST CLIENTE
+        public static void registrarNuevoCliente(int dni)//REGISTRA UN NUEVO CLIENTE EN EL ARRAYLIST CLIENTE
         {
             try { 
             Console.WriteLine("Nuevo Cliente");
@@ -394,7 +394,7 @@ namespace MenuPrincipal
             Console.WriteLine("Total recaudado en el supermercado: " + total_ganado + " pesos");
         }
 
-        public static void TotalRecaudado_caja()//MUESTRA EL TOTAL RECAUDADO POR CAJAS SIN IMPORTAR SU CAJERO
+        public static void TotalRecaudadoPorCaja()//MUESTRA EL TOTAL RECAUDADO POR CAJAS SIN IMPORTAR SU CAJERO
         {
             int cont = 0;
             Console.WriteLine("Total recaudado en el supermercado discriminado por caja: ");
@@ -454,17 +454,17 @@ namespace MenuPrincipal
             int cantidadsobrante;
             float total=0;
             float pagarcondescuento=0;//inicializo en 0 para poder acumularlo directamente
-            foreach(Carro c in carro)//recorro el carro de productos
+            foreach(Carro carro in carro)//recorro el carro de productos
             {                
-                foreach (Promociones p in promociones)
+                foreach (Promociones promo in promociones)
                 {//recorro las promociones
-                    if (c.getProductoCarro().Id == p.getProducto().Id)//analizo si el producto del carro tiene alguna promocion
+                    if (carro.getProductoCarro().Id == promo.getProducto().Id)//analizo si el producto del carro tiene alguna promocion
                     {
-                        cantidadapagar = c.Cantidad / p.Lleva;//calculo cuantas veces deberia multiplicar el p.paga, ej: llevo (c.cantidad)=7 unidades y tiene un (p.lleva)=3x(p.paga)=2, el resultado es 2
-                        cantidadapagar = cantidadapagar * p.Paga;//teniendo en cuenta el comentario anterior, aqui multiplico el resultado por la cantidad de veces que se aplica el p.paga
-                        pagarcondescuento += sumarProductosCantidad(cantidadapagar, c.getProductoCarro().Precio);//habiendo acumulado el total de unidades a pagar con el descuento, aplico el precio del producto para acumular al total a pagar realmente
-                        cantidadsobrante = c.Cantidad % p.Lleva;//porque faltan las unidades que sobraron, teniendo en cuenta el mismo ejemplo, sobra 1 unidad, aqui aplico las unidades restantes
-                        pagarcondescuento += sumarProductosCantidad(cantidadsobrante, c.getProductoCarro().Precio);//multiplico la unidad restante y se la agrego al pago total, asi... obteniendo el precio final con el descuento
+                        cantidadapagar = carro.Cantidad / promo.Lleva;//calculo cuantas veces deberia multiplicar el p.paga, ej: llevo (c.cantidad)=7 unidades y tiene un (p.lleva)=3x(p.paga)=2, el resultado es 2
+                        cantidadapagar = cantidadapagar * promo.Paga;//teniendo en cuenta el comentario anterior, aqui multiplico el resultado por la cantidad de veces que se aplica el p.paga
+                        pagarcondescuento += sumarProductosCantidad(cantidadapagar, carro.getProductoCarro().Precio);//habiendo acumulado el total de unidades a pagar con el descuento, aplico el precio del producto para acumular al total a pagar realmente
+                        cantidadsobrante = carro.Cantidad % promo.Lleva;//porque faltan las unidades que sobraron, teniendo en cuenta el mismo ejemplo, sobra 1 unidad, aqui aplico las unidades restantes
+                        pagarcondescuento += sumarProductosCantidad(cantidadsobrante, carro.getProductoCarro().Precio);//multiplico la unidad restante y se la agrego al pago total, asi... obteniendo el precio final con el descuento
                     }  
                 }
                 if (pagarcondescuento > 0)//si hubo algun descuento
@@ -475,7 +475,7 @@ namespace MenuPrincipal
                 }
                 else//si no hubo descuento
                 {
-                    total += sumarProductosCantidad(c.Cantidad,c.getPrecioProductoCarro());//se suma directamente en el acumulador total mediante la funcion recursiva(esta funcion se aplica mas arriba en caso de haber descuento)
+                    total += sumarProductosCantidad(carro.Cantidad,carro.getPrecioProductoCarro());//se suma directamente en el acumulador total mediante la funcion recursiva(esta funcion se aplica mas arriba en caso de haber descuento)
                 }
             }
             return total;//retorna el total a pagar con el descuento aplicado arriba
@@ -484,13 +484,9 @@ namespace MenuPrincipal
         static float sumarProductosCantidad(int cantidad, float precio)//funcion recursiva que suma los precios de los productos, obtiene los argumentos de la cantidad y precio, el caso base es si la cantidad llegase a 0
         {
             if (cantidad == 0)//caso base
-            {
                 return 0;
-            }
             else
-            {
                 return sumarProductosCantidad(cantidad-1, precio) + precio;//recursividad
-            }
         }
         
 

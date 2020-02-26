@@ -15,8 +15,8 @@ namespace MenuPrincipal
         static int id=0;
         int idpropio = 0;
 
-        //CONSTRUCTOR/ES
-        public Producto(string tipo, string marca, string envase, float precio)//constructor utilizado para crear productos del SUPERMERCADO
+        
+        public Producto(string tipo, string marca, string envase, float precio)
         {
             this.tipo = tipo;
             this.marca = marca;
@@ -26,7 +26,7 @@ namespace MenuPrincipal
             idpropio = id;
         }
         
-        //INICIO SET/GET DE VARIABLES PRIVADAS, EN ESTE CASO SE USA EL GET PORQUE VAMOS A QUERER ACCEDER A QUE VALOR TIENE Y NO A MODIFICARLAS, CON EL CONSTRUCTOR YA SE DEFINEN Y SE QUEDAN ALLI
+        
         public string Tipo
         {    
             get { return this.tipo; }

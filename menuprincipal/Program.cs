@@ -191,7 +191,7 @@ namespace MenuPrincipal
 						Console.WriteLine("");
 						break;
 					case 4:
-                        Supermercado.listado_cajas();
+                        Supermercado.estadoCajas();
 						break;
 					case 5:
 						Console.WriteLine("Volviendo al Menu principal...");
@@ -354,7 +354,7 @@ namespace MenuPrincipal
                 dni = int.Parse(Console.ReadLine());
                 if (Supermercado.existeCliente(dni) == false)//en caso de que el dni del cliente no este en el arraylist de los clientes
                 {
-                    Supermercado.nuevoCliente(dni);//ejecutamos la funcion para obtener  los datos del nuevo cliente
+                    Supermercado.registrarNuevoCliente(dni);//ejecutamos la funcion para obtener  los datos del nuevo cliente
                 }
                 Console.WriteLine("total a pagar: " + Supermercado.pagarConDescuento());//mostramos el total a pagar por el cliente con los descuentos de las promociones si hubiese (dentro de la funcion se detalla todo)
                 Console.WriteLine("con su compra ahorro: " + (Supermercado.getGastoTotalCarro() - Supermercado.pagarConDescuento()));//se muestra lo que ahorra el cliente gracias a las promociones
@@ -409,7 +409,7 @@ namespace MenuPrincipal
                             Console.ReadKey(true);
                             break;
                         case 2:
-                            Supermercado.TotalRecaudado_caja();
+                            Supermercado.TotalRecaudadoPorCaja();
                             Console.WriteLine("");
                             Console.WriteLine("Presione una tecla para continuar");
                             Console.ReadKey(true);

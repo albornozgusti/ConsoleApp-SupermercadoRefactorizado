@@ -10,10 +10,10 @@ namespace MenuPrincipal
         int cantidad;
         Producto producto;
 
-        public Carro(Producto p, int c)//constructor
+        public Carro(Producto p, int c)
         {
-            producto = p;//que producto agrega al carro y..
-            cantidad = c;//que cantidad agrega al carro
+            producto = p;
+            cantidad = c;
         }
 
         public int Cantidad
@@ -33,7 +33,7 @@ namespace MenuPrincipal
 
         public float getPrecioProductoCarro()
         {
-            return producto.Precio;//retorno el precio del producto
+            return producto.Precio;
         }
 
         public override string ToString()

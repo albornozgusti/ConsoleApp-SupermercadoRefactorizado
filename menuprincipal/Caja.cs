@@ -39,7 +39,7 @@ namespace MenuPrincipal
             abierto = false;
         }
 
-        public void abrirCajero(int opc)//
+        public void abrirCajero(int opc)
         {
             cajero = Supermercado.getCajero(opc);//obtenemos desde el arraylist de cajeros y asignamos al cajero a la caja elejida
             abierto = true;//seteamos que esta abierta
